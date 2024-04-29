@@ -1,18 +1,7 @@
-#!/usr/bin/python3
-from sys import argv
-
-with open(argv[1]) as f:
-    for line in f:
-        numb = int(line)
-        print("{:d}=".format(numb), end="")
-        if numb % 2 == 0:
-            print("{}*2".format(numb//2))
-            continue
-        for i in range(3, numb, 2):
-            if num % i == 0:
-                factor = numb//i
-                for j in range(3, factor, 2):
-                    if factor % j == 0 or i % j == 0:
-                        break
-                print("{}*{}".format(factor, i))
-                break
+#!/usr/bin/bash
+FILE=$1
+while read NUMBERS;
+do
+    factors=($(factor $NUMBERS))
+    echo "$NUMBERS = $(($NUMBERS/${factors[1]}))*${factors[1]}"
+done < $FILE
